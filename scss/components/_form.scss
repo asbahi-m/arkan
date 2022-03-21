@@ -1,14 +1,21 @@
 @use "sass:selector";
+@use "sass:color";
+@use "sass:math";
 @use "../tools" as *;
 
 
   // Form Variables
-  $form-padding:  $gutter-base !default;
-  $input-padding: $gutter-sm !default;
-  $input-border: $border-width solid $border-primary;
-  $field-gutter:  $gutter-sm !default;
+  $form-padding:  $gutter-md !default;
+  $field-gutter: if($form-padding > 0, math.div($form-padding, 2), $gutter-sm) !default;
+  $filed-border-width: $border-width !default;
+  $filed-border-color: $primary-color !default;
+  $field-radius: $radius-width !default;
 
 form {
+  padding: $form-padding;
+  > :first-child {
+    padding-top: if($form-padding > 0, 0 !important, null);
+  }
   .form-group {
     display: flex;
     flex-direction: column;
@@ -38,19 +45,60 @@ form {
   }
   #{selector.nest(".field", "input, textarea, select")} {
     width: 100%;
-    padding: $input-padding;
-    border: $input-border;
-    border-radius: $radius-width;
+    padding: $field-gutter;
+    border: $filed-border-width solid $filed-border-color;
+    border-radius: $field-radius;
     &:focus {
-      outline: $input-border;
+      outline: $filed-border-width + 1 solid color.scale($filed-border-color, $lightness: 20%);
     }
   }
   textarea {
     line-height: $line-height-md;
     resize: vertical;
   }
+  .custom-file {
+    width: 100%;
+    position: relative;
+    input {
+      height: calc(2.5rem + ($field-gutter));
+      padding: 0;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+    }
+    .custom-file-label {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: $filed-border-width solid $filed-border-color;
+      border-radius: $field-radius;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      color: $gray;
+      &::before {
+        content: "\f093";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 20px;
+        color: $body-color;
+        background-color: $light-color;
+        display: inline-block;
+        padding: $field-gutter - 1 $field-gutter + 5;
+        margin-#{$right-dir}: $field-gutter;
+        border-top-#{$left-dir}-radius: $field-radius;
+        border-bottom-#{$left-dir}-radius: $field-radius;
+      }
+    }
+  }
+
+  [type=submit] {
+    margin-top: $field-gutter;
+  }
   button.center {
     display: flex;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

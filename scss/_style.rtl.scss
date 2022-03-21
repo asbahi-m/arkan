@@ -1,15 +1,16 @@
+@use "sass:math";
 @use "tools" as *;
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap");
 $primary-color: #a9ce39;
 $radius-width: $gutter-md;
 
 [dir="rtl"] {
-// _reboot.scss
+  // _reboot.scss
   body {
     font-family: "Cairo", "sans-serif";
   }
 
-// _classes.scss
+  // _classes.scss
   #to-up {
     left: unset;
     right: 5%;
@@ -17,8 +18,12 @@ $radius-width: $gutter-md;
       right: 15px;
     }
   }
+  .overlay-bg {
+    left: unset;
+    right: 0;
+  }
 
-// _nav.scss
+  // _nav.scss
   @include media-up("lg") {
     $nav-radius: $radius-width;
     $nav-border-width: $border-width;
@@ -51,7 +56,7 @@ $radius-width: $gutter-md;
     }
   }
 
-// _navbar.scss
+  // _navbar.scss
   .navbar {
     $navbar-padding: $gutter-base;
     $toggle-media: "md";
@@ -102,7 +107,7 @@ $radius-width: $gutter-md;
     }
   }
 
-// _carousel.scss
+  // _carousel.scss
   .carousel {
     .carousel-control {
       .prev {
@@ -126,9 +131,25 @@ $radius-width: $gutter-md;
         }
       }
     }
+    &.slide {
+      // Carousel next style
+      .carousel-next-enter {
+        transform: translateX(-100%);
+      }
+      .carousel-prev-leave-to {
+        transform: translateX(100%);
+      }
+      // Carousel prev style
+      .carousel-prev-enter {
+        transform: translateX(100%);
+      }
+      .carousel-next-leave-to {
+        transform: translateX(-100%);
+      }
+    }
   }
 
-// _card.scss
+  // _card.scss
   @include media-up("sm") {
     $card-radius: $radius-width;
     .card-list {
@@ -149,9 +170,40 @@ $radius-width: $gutter-md;
     }
   }
 
-// _pages.scss
-  .page,
-  .post {
+  // _form.scss
+  form {
+    .custom-file {
+      .custom-file-label::before {
+        margin-left: if($gutter-base > 0, math.div($gutter-base, 2), $gutter-sm);
+        border-top-right-radius: $radius-width;
+        border-bottom-left-radius: $radius-width;
+      }
+    }
+  }
+
+  // _pagination.scss
+  .page-link {
+    &.page-prev::before {
+      @include insert-chevron(right);
+    }
+    &.page-next::before {
+      @include insert-chevron(left);
+    }
+    &.page-first::before {
+      @include insert-chevron(right, "\f101");
+    }
+    &.page-last::before {
+      @include insert-chevron(left, "\f100");
+    }
+  }
+
+  // _pages.scss
+  .page {
+    .post {
+      .post-meta {
+        margin-left: $gutter-sm - 5;
+      }
+    }
     .nav-pills {
       .nav-link {
         @include media-up("lg") {

@@ -1,0 +1,63 @@
+@use "sass:color";
+@use "tools/variables" as * with (
+  $primary-color: #802992,
+  $secondary-color: #89cb07,
+  $radius-width: 4px,
+  $navbar-height:   100px,
+  $section-gutter: 60px,
+  $font-name: Roboto,
+  $container-max-widths: (
+    "sm": 540px,
+    "md": 720px,
+    "lg": 960px,
+    "xl": 1190px
+  )
+);
+
+$heading-overlay-bg:    color.scale($primary-color, $alpha: -40%);
+$overlay-bg:    color.scale($black, $alpha: -50%);
+
+// Basic
+@use "reboot";
+@use "grid";
+@use "classes";
+
+// Components
+@use "components/nav" with (
+  $nav-link-padding: $gutter-sm $gutter-base
+);
+@use "components/navbar" with (
+  $navbar-padding: $gutter-base,
+  $collapse-color: $light-color,
+  $fixed-color: $dark-color,
+  $fixed-bg: $white
+);
+@use "components/carousel" with (
+  $carousel-color: $body-color
+);
+@use "components/breadcrumb";
+@use "components/pagination";
+@use "components/icons";
+@use "components/buttons" with (
+  $btn-font-size: $font-size-base,
+  $btn-font-weight: normal,
+  $btn-padding: $gutter-base
+);
+@use "components/card" with (
+  $card-list-media: "md"
+);
+@use "components/modal";
+@use "components/form" with (
+  $form-padding: $gutter-lg,
+  $filed-border-color: $secondary-color
+);
+
+
+// Layout
+@use "layout/footer" with (
+  $footer-padding: $section-gutter,
+  $footer-color: $body-color,
+  $footer-bg: $white
+);
+@use "layout/pages";
+@use "keyframes";

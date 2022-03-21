@@ -1,0 +1,56 @@
+@use "sass:color";
+@use "../tools" as *;
+
+// pagination
+//      => page-item [active]
+//              => page-link
+
+// Pagination Variables
+$page-radius: $radius-width !default;
+$page-border-width: $border-width !default;
+$page-border-color: $border-color !default;
+$page-link-padding: 7px $gutter-base !default;
+$page-bg: $white;
+$page-color: $dark-color !default;
+$page-active-bg: $primary-color !default;
+$page-active-color: $white !default;
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  color: $page-color;
+  .page-link {
+    display: block;
+    padding: $page-link-padding;
+    border: $page-border-width solid $page-border-color;
+    border-radius: $page-radius;
+    background-color: $page-bg;
+    @include transition;
+    &:hover {
+      background-color: color.scale($page-color, $alpha: -90%);
+    }
+    &.page-prev::before {
+      @include insert-chevron($left-dir);
+    }
+    &.page-next::before {
+      @include insert-chevron($right-dir);
+    }
+    &.page-first::before {
+      @include insert-chevron($left-dir, "\f100");
+    }
+    &.page-last::before {
+      @include insert-chevron($right-dir, "\f101");
+    }
+  }
+  .page-item.active .page-link {
+    background-color: $page-active-bg;
+    color: $page-active-color;
+    border-color: $page-active-bg;
+  }
+  .page-item.disabled .page-link {
+    color: $gray;
+    background-color: $white;
+    border-color: $gray-10;
+    pointer-events: none;
+  }
+}

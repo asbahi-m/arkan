@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARKAN Pro - Plants Services</title>
+  <meta name="description" content="Description Arkan Pro" />
+  <meta name="thumbnail" content="images/logo.jpg" />
+
+  <!-- <meta name="twitter:card" content="summary_large_image" /> -->
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="index.html" />
+  <meta property="og:title" content="ARKAN Pro - Plants Services" />
+  <meta property="og:description" content="Description Arkan Pro." />
+  <meta property="og:image" content="images/logo.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Preload Files -->
+  <link rel="preload" crossorigin as="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="preload" crossorigin as="script" href="js/jquery.min.js" />
+  <link rel="preload" crossorigin as="script" href="js/fontawesome.js" />
+  <link rel="preload" crossorigin as="css" href="css/fontawesome.min.css" />
+
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="css/normalize.css" />
+  <!-- <link rel="stylesheet" href="css/fontawesome.min.css" /> -->
+  <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <button type="button" id="to-up" class="icon icon-secondary"><i class="fas fa-chevron-up"></i></button>
+  <a type="button" id="live-chat" class="icon icon-secondary"><i class="fab fa-whatsapp"></i></a>
+
+  <div class="modal" hidden>
+    <div class="modal-body container">
+      <div class="modal-header">
+        <button type="button" class="modal-close btn btn-primary"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-content">
+        <img src="" alt="" />
+      </div>
+      <div class="modal-search">
+        <div class="search uppercase">Search</div>
+        <form action="search.html" method="">
+          <div class="field">
+            <input type="search" name="search" placeholder="Keywords Search..." />
+            <button class="btn btn-secondary" type="submit"><i class="fas fa-search"></i></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-top">
+    <div class="container">
+      <div class="social">
+        <strong>Join us</strong>
+        <a href="#" target="_blank" class="icon icon-primary"><i class="fab fa-instagram"></i></a>
+        <a href="#" target="_blank" class="icon icon-dark"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" target="_blank" class="icon icon-primary"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank" class="icon icon-dark"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      <div class="email">
+        <a class="nav-link" href="mailto:info@arkanpro.com">
+          <i class="far fa-envelope text-primary"></i><span>info@arkanpro.com</span>
+        </a>
+      </div>
+      <div class="locale">
+        <a href="#" class="btn btn-primary">العربية</a>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="navbar">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><img src="images/logo-full.png" alt="Arkan Pro" /></a>
+        <button class="navbar-toggle" type="button">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="navbar-nav collapse">
+          <a class="nav-link" href="index.html"><span>Home</span></a>
+          <a class="nav-link" href="about-us.html"><span>About Us</span></a>
+          <a class="nav-link active" href="services.html"><span>Services</span></a>
+          <a class="nav-link" href="products.html"><span>Products</span></a>
+          <a class="nav-link" href="why-us.html"><span>Why Us</span></a>
+          <a class="nav-link" href="career.html"><span>Career</span></a>
+          <a class="nav-link" href="contact-us.html"><span>Contact Us</span></a>
+          <a class="nav-link bg-primary border-radius" href="support.html">Support</a>
+          <button class="nav-link open-modal-search" type="button"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="heading text-light">
+      <div class="container">
+        <h1>Plants Services</h1>
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="services.html">Plants Services</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><a href="service-view.html">Design and Branding</a></li>
+        </ul>
+        <div class="overlay-img" style="background-image: url(images/breadcrumb.jpg)"></div>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="container">
+        <div class="text-center">
+          <h1 class="head-title"><a href="#">Design and Branding</a></h1>
+          <div class="sub-title text-primary uppercase">Always close together</div>
+          <p class="sub-text text-center">
+            It is a long established fact that a reader will be distracted by
+            the readable content of a page when looking at its layout. The point
+            of using Lorem Ipsum is that it has a more-or-less normal
+            distribution of letters ...
+          </p>
+        </div>
+
+        <article class="post">
+          <figure class="post-img">
+            <div class="figure-img">
+              <img class="lazyload" data-src="images/pic-design-brand.jpg" alt="Company Brand" />
+              <div class="overlay-bg">
+                <button class="modal-open" type="button" data-image="images/pic-design-brand.jpg">
+                  <i class="fas fa-expand"></i>
+                </button>
+              </div>
+            </div>
+            <!-- <figcaption></figcaption> -->
+          </figure>
+
+          <div class="post-content">
+            <h2 class="post-title">Company Brand <i class="fas fa-quote-right text-large text-primary"></i></h2>
+            <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+              looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution
+              of letters, as opposed to using "Content here, content here", making it look like readable English.</p>
+            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+              alteration in some form, by injected humour, or randomised words which don't look even slightly
+              believable.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="latest">
+      <div class="container">
+          <h1 class="underline"><a>Latest <span>Projects</span></a></h1>
+          <div class="card-grid">
+            <div class="card">
+              <div class="card-img">
+                <div class="img">
+                  <img class="lazyload" data-src="images/pic-proj-1.jpg" alt="Project Name" />
+                </div>
+                <div class="overlay-bg">
+                  <div class="buttons">
+                    <a href="project-view.html" class="icon icon-primary" type="button"><i class="fas fa-link"></i></a>
+                    <button class="icon icon-primary modal-open" type="button" data-image="images/pic-proj-1.jpg">
+                      <i class="fas fa-expand"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <h2 class="card-title"><a class="stretched-link" href="project-view.html">Project Name</a></h2>
+                <div class="card-meta">Design and Brand</div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-img">
+                <div class="img">
+                  <img class="lazyload" data-src="images/pic-proj-2.jpg" alt="Project Name" />
+                </div>
+                <div class="overlay-bg">
+                  <div class="buttons">
+                    <a href="project-view.html" class="icon icon-primary" type="button"><i class="fas fa-link"></i></a>
+                    <button class="icon icon-primary modal-open" type="button" data-image="images/pic-proj-2.jpg">
+                      <i class="fas fa-expand"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <h2 class="card-title"><a class="stretched-link" href="project-view.html">Project Name</a></h2>
+                <div class="card-meta">Design and Brand</div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-img">
+                <div class="img">
+                  <img class="lazyload" data-src="images/pic-proj-3.jpg" alt="Project Name" />
+                </div>
+                <div class="overlay-bg">
+                  <div class="buttons">
+                    <a href="project-view.html" class="icon icon-primary" type="button"><i class="fas fa-link"></i></a>
+                    <button class="icon icon-primary modal-open" type="button" data-image="images/pic-proj-3.jpg">
+                      <i class="fas fa-expand"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <h2 class="card-title"><a class="stretched-link" href="project-view.html">Project Name</a></h2>
+                <div class="card-meta">Design and Brand</div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-img">
+                <div class="img">
+                  <img class="lazyload" data-src="images/pic-proj-4.jpg" alt="Project Name" />
+                </div>
+                <div class="overlay-bg">
+                  <div class="buttons">
+                    <a href="project-view.html" class="icon icon-primary" type="button"><i class="fas fa-link"></i></a>
+                    <button class="icon icon-primary modal-open" type="button" data-image="images/pic-proj-4.jpg">
+                      <i class="fas fa-expand"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <h2 class="card-title"><a class="stretched-link" href="project-view.html">Project Name</a></h2>
+                <div class="card-meta">Design and Brand</div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-img">
+                <div class="img">
+                  <img class="lazyload" data-src="images/pic-proj-5.jpg" alt="Project Name" />
+                </div>
+                <div class="overlay-bg">
+                  <div class="buttons">
+                    <a href="project-view.html" class="icon icon-primary" type="button"><i class="fas fa-link"></i></a>
+                    <button class="icon icon-primary modal-open" type="button" data-image="images/pic-proj-5.jpg">
+                      <i class="fas fa-expand"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <h2 class="card-title"><a class="stretched-link" href="project-view.html">Project Name</a></h2>
+                <div class="card-meta">Design and Brand</div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-img">
+                <div class="img">
+                  <img class="lazyload" data-src="images/pic-proj-6.jpg" alt="Project Name" />
+                </div>
+                <div class="overlay-bg">
+                  <div class="buttons">
+                    <a href="project-view.html" class="icon icon-primary" type="button"><i class="fas fa-link"></i></a>
+                    <button class="icon icon-primary modal-open" type="button" data-image="images/pic-proj-6.jpg">
+                      <i class="fas fa-expand"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <h2 class="card-title"><a class="stretched-link" href="project-view.html">Project Name</a></h2>
+                <div class="card-meta">Design and Brand</div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center more">
+            <a class="btn btn-primary" href="#">View More <i class="fas fa-chevron-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="subscribe boxlight bg-secondary">
+      <div class="container">
+        <div class="card row">
+          <div class="card-body">
+            <h1 class="card-title">Request one of our services</h1>
+            <p class="card-desc">
+              Remember that customers always want their orders to arrive on time, so go ahead and think of the Smart
+              Delivery application that helps you achieve their satisfaction in the first place, especially if you seek
+              to grow and expand your customer base. Don't bother looking for experienced drivers, just choose to
+              subscribe to the Smart Delivery application to get highly skiled drivedrs to deliver your customer's
+              requiests wherever he is.
+            </p>
+          </div>
+          <form action="" method="">
+            <div class="field">
+              <label for="input-name">Your Name</label>
+              <input type="text" name="name" id="input-name" required>
+            </div>
+            <div class="form-group">
+              <div class="field">
+                <label for="input-email">Email</label>
+                <input type="email" name="email" id="input-email" required>
+              </div>
+              <div class="field">
+                <label for="input-phone">Phone</label>
+                <input type="tel" name="phone" id="input-phone">
+              </div>
+            </div>
+            <div class="field">
+              <label for="input-service">Service</label>
+              <select name="service" id="input-service" required>
+                <option value="" disabled selected>Please Select Service</option>
+                <option value="it">IT Service</option>
+                <option value="security">Security Service</option>
+                <option value="design">Design Service</option>
+                <option value="hosting">Hosting Service</option>
+              </select>
+            </div>
+            <button class="btn btn-primary center" type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="items">
+        <div class="item">
+          <a href="#" class="brand d-block"><img src="images/logo-full.png" alt="Arkan Pro" /></a>
+          <div class="social">
+            <a href="#" target="_blank" class="icon icon-primary"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank" class="icon icon-primary"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" target="_blank" class="icon icon-primary"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+
+        <div class="item">
+          <h2 class="underline">Company</h2>
+          <div class="links">
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="about-us.html">About Us</a>
+            <a class="nav-link" href="services.html">Services</a>
+            <a class="nav-link" href="clients.html">Our Clients</a>
+            <a class="nav-link" href="why-us.html">Why Us</a>
+            <a class="nav-link" href="contact-us.html">Contact Us</a>
+          </div>
+        </div>
+
+        <div class="item">
+          <h2 class="underline">Info Contact</h2>
+          <div class="contact-info">
+            <div>
+              <span><i class="fas fa-map-marker-alt"></i></span>
+              <a>Saudi Arabia - Khobar</a>
+            </div>
+            <div>
+              <span><i class="far fa-envelope"></i></span>
+              <a href="mailto:info@arkanpro.com">info@arkanpro.com</a>
+            </div>
+            <div>
+              <span><i class="fas fa-phone-volume"></i></span>
+              <a>+966 555 123456</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sub-footer">
+      <div class="container">
+        <a class="btn btn-secondary support" type="button" href="#"><i class="fas fa-question"></i></a>
+        <span>Copyright © 2022</span>
+        <span class="logo"><img src="images/logo-white.png" alt="Arkan Pro" /> ARKAN Pro</span>
+        All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS Files -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/lazysizes.min.js"></script>
+  <script src="js/fontawesome.js"></script>
+  <script src="js/multislider.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
