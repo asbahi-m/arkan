@@ -1395,39 +1395,51 @@ form textarea {
 }
 form .custom-file {
   width: 100%;
+  height: calc(2.25rem + 2px);
   position: relative;
+  display: inline-block;
 }
 form .custom-file input {
-  height: calc(2.5rem + 15px);
+  width: 100%;
+  height: 100%;
   padding: 0;
   position: relative;
   z-index: 1;
   opacity: 0;
 }
 form .custom-file .custom-file-label {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: 1px solid #89cb07;
-  border-radius: 4px;
   position: absolute;
   top: 0;
+  right: 0;
   left: 0;
   z-index: 0;
+  height: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  overflow: hidden;
+  line-height: 2;
   color: gray;
+  border: 1px solid #89cb07;
+  border-radius: 4px;
 }
 form .custom-file .custom-file-label::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  display: block;
+  padding-left: 20px;
+  padding-right: 20px;
+  line-height: 2;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  color: #1a1a1a;
+  background-color: #f7f7f7;
   content: "\f093";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  font-size: 20px;
-  color: #1a1a1a;
-  background-color: #f7f7f7;
-  display: inline-block;
-  padding: 14px 20px;
-  margin-right: 15px;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  font-size: 18px;
 }
 form [type=submit] {
   margin-top: 15px;

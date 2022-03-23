@@ -58,37 +58,49 @@ form {
   }
   .custom-file {
     width: 100%;
+    height: calc(1.5rem + .75rem + 2px);
     position: relative;
+    display: inline-block;
     input {
-      height: calc(2.5rem + ($field-gutter));
+      width: 100%;
+      height: 100%;
       padding: 0;
       position: relative;
       z-index: 1;
       opacity: 0;
     }
     .custom-file-label {
-      display: block;
-      width: 100%;
-      height: 100%;
-      border: $filed-border-width solid $filed-border-color;
-      border-radius: $field-radius;
       position: absolute;
       top: 0;
+      right: 0;
       left: 0;
       z-index: 0;
+      height: 100%;
+      padding-left: $field-gutter;
+      padding-right: $field-gutter;
+      overflow: hidden;
+      line-height: $line-height-lg;
       color: $gray;
+      border: $filed-border-width solid $filed-border-color;
+      border-radius: $field-radius;
       &::before {
+        position: absolute;
+        top: 0;
+        #{$right-dir}: 0;
+        bottom: 0;
+        z-index: 3;
+        display: block;
+        padding-left: $field-gutter + 5;
+        padding-right: $field-gutter + 5;
+        line-height: $line-height-lg;
+        border-top-#{$right-dir}-radius: $field-radius;
+        border-bottom-#{$right-dir}-radius: $field-radius;
+        color: $body-color;
+        background-color: $light-color;
         content: "\f093";
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
-        font-size: 20px;
-        color: $body-color;
-        background-color: $light-color;
-        display: inline-block;
-        padding: $field-gutter - 1 $field-gutter + 5;
-        margin-#{$right-dir}: $field-gutter;
-        border-top-#{$left-dir}-radius: $field-radius;
-        border-bottom-#{$left-dir}-radius: $field-radius;
+        font-size: $font-size-base + 2;
       }
     }
   }
