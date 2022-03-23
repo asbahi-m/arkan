@@ -81,11 +81,6 @@ $zIndex-modal: 1030 !default;
 
 $navbar-height: null !default;
 
-////// Components
-    // Icons
-    $icon-size:     30px !default;
-    $icon-radius:   50% !default;
-
 ////// Classes
     // Overlay
     $overlay-bg:   color.scale($black, $alpha: -20%) !default;

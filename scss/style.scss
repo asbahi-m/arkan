@@ -523,11 +523,12 @@ a#live-chat {
       background-color: color.scale($white, $alpha: -60%);
       @include media-up("md") {
         max-width: 60%;
-        margin-left: 40px;
+        margin: auto;
+        // margin-left: 40px;
       }
       @include media-up("lg") {
         max-width: 40%;
-        margin-left: 60px;
+        // margin-left: 60px;
       }
       .buttons {
         display: flex;
@@ -737,6 +738,16 @@ main:not(.page) .services {
 }
 
 .clients {
+  .container {
+    position: relative;
+  }
+  .more {
+    @include position($height: auto, $width: auto, $top: 40px, $left: calc(100% - 15px));
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transform: translateX(-100%);
+    font-size: $font-size-sm;
+  }
   .items {
     display: flex;
     flex-wrap: wrap;
@@ -866,6 +877,15 @@ main:not(.page) .services {
   > section:not(.heading) {
     padding-top: 40px;
     padding-bottom: 40px;
+  }
+
+  .heading .carousel {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
   }
 
   .products {

@@ -543,13 +543,12 @@ a#live-chat {
 @media (min-width: 768px) {
   .main-slider .carousel .carousel-item .item-caption {
     max-width: 60%;
-    margin-left: 40px;
+    margin: auto;
   }
 }
 @media (min-width: 992px) {
   .main-slider .carousel .carousel-item .item-caption {
     max-width: 40%;
-    margin-left: 60px;
   }
 }
 .main-slider .carousel .carousel-item .item-caption .buttons {
@@ -764,6 +763,22 @@ main:not(.page) .services .container .benner img {
   max-width: 100%;
 }
 
+.clients .container {
+  position: relative;
+}
+.clients .more {
+  content: "";
+  height: auto;
+  width: auto;
+  position: absolute;
+  top: 40px;
+  left: calc(100% - 15px);
+  z-index: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  transform: translateX(-100%);
+  font-size: 14px;
+}
 .clients .items {
   display: flex;
   flex-wrap: wrap;
@@ -897,6 +912,14 @@ main:not(.page) .services .container .benner img {
 .page > section:not(.heading) {
   padding-top: 40px;
   padding-bottom: 40px;
+}
+.page .heading .carousel {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 @media (min-width: 1200px) {
   .page .products .card {

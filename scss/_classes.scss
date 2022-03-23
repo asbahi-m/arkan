@@ -124,7 +124,6 @@
   }
   border-radius: $to-up-radius;
   box-shadow: 0 3px 5px 0px color.scale($black, $alpha: -80%);
-  background: $dark-color;
   line-height: $to-up-size;
   .fas {
     color: $dark-color;
@@ -133,8 +132,10 @@
   }
   &::after {
     border-radius: $to-up-radius;
-    transform: scale(1);
-    @include transition(top, 0.3s, ease-in, 0.1s);
+    background: $dark-color;
+    transform: scaleY(0);
+    transform-origin: 50% 100%;
+    @include transition(transform, 0.3s, ease-out, 0.1s);
   }
   &:hover {
     .fas {
@@ -142,7 +143,9 @@
       animation: hvr-icon-up 0.3s ease-out;
     }
     &::after {
-      top: -100%;
+      transform: scaleY(1);
+      
+      // top: -100%;
     }
   }
 }

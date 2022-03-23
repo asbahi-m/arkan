@@ -101,65 +101,100 @@ $(function () {
   })
 
   //// Carousel
-  let carouselItems = $(".carousel .carousel-item");
-  let carouselIndex = 0;
-  let carouselLen = carouselItems.length;
-  // Hide All Items without Active Item:
-  carouselItems.each((index, item) => {
-    if ($(item).hasClass("active")) {
-      carouselIndex = index;
+  function carousel(parent, target) {
+    // Get time duration function from transition class:
+    function getTimeTransition(className) {
+      let classTimeEl = document.querySelector(className);
+      let classTimeObj = getComputedStyle(classTimeEl);
+      let getTimeClass = classTimeObj.getPropertyValue("transition-duration");
+      return getTimeClass.replace("s", "") * 1000;
     }
-    $(item).not(".active").hide();
-  })
-  // Get time duration function from transition class:
-  function getTimeTransition(className) {
-    let classTimeEl = document.querySelector(className);
-    let classTimeObj = getComputedStyle(classTimeEl);
-    let getTimeClass = classTimeObj.getPropertyValue("transition-duration");
-    return getTimeClass.replace("s", "") * 1000;
-  }
-  $(".carousel").on("click", ".next, .prev", function (e) {
+    let carouselItems = $(parent).find(".carousel-item");
+    let carouselIndex = 0;
+    let carouselLen = carouselItems.length;
+    // Hide All Items without Active Item:
+    carouselItems.each((index, item) => {
+      if ($(item).hasClass("active")) {
+        carouselIndex = index;
+      }
+      $(item).not(".active").hide();
+    })
+    let control = $(target).hasClass("prev") ? "prev" : "next";
+    let controlRev = $(target).hasClass("prev") ? "next" : "prev";
+    $(target).prop("disabled", true);
+
     let currentIndex = carouselIndex;
     let nextIndex = (currentIndex + (1 % carouselLen) + carouselLen) % carouselLen;
     let prevIndex = (currentIndex + (-1 % carouselLen) + carouselLen) % carouselLen;
-    // Move Carousel when click on "next" or "prev":
+    // Carousel slide effect:
+    if ($(parent).hasClass("slide")) {
+      // Add Classes to Current Item
+      $(carouselItems[currentIndex]).show(0, function () {
+        let clasessNames = `carousel-${control}-active carousel-${controlRev}-leave-to`;
+        $(this).addClass(clasessNames).removeClass("active");
+        let delayTime = getTimeTransition(`.carousel-${control}-active`);
+        $(this).delay(delayTime).fadeOut(0, function () {
+          $(this).removeClass(clasessNames);
+          $(target).prop("disabled", false);
+        });
+      });
+      // Add Classes to Next or Prev Item
+      $(carouselItems[(control == "prev" ? prevIndex : nextIndex)]).addClass(`carousel-${control}-enter active`);
+      $(carouselItems[(control == "prev" ? prevIndex : nextIndex)]).show(0, function () {
+        let clasessNames = `carousel-${control}-active carousel-${controlRev}-enter-to`;
+        $(this).removeClass(`carousel-${control}-enter`).addClass(clasessNames);
+        let delayTime = getTimeTransition(`.carousel-${control}-active`);
+        $(this).delay(delayTime).fadeIn(0, function () {
+          $(this).removeClass(clasessNames);
+        });
+      });
+    } else {
+      // Carousel fade effect:
+      $(carouselItems[(control == "next" ? nextIndex : prevIndex)])
+        .addClass("active").fadeIn(function () {
+          $(target).prop("disabled", false);
+        }).siblings().removeClass("active").fadeOut();
+    }
+    carouselIndex = control == "prev" ? prevIndex : nextIndex;
+  }
+  $(".main-slider .carousel").on("click", ".next, .prev", function (e) {
     if ($(this).hasClass("next") || $(this).hasClass("prev")) {
-      $(e.target).prop("disabled", true);
-      let control = $(this).hasClass("next") ? "next" : "prev";
-      let controlRev = $(this).hasClass("next") ? "prev" : "next";
-      // Carousel slide effect:
-      if ($(e.delegateTarget).hasClass("slide")) {
-        // Add Classes to Current Item
-        $(carouselItems[currentIndex]).show(0, function () {
-          let clasessNames = `carousel-${control}-active carousel-${controlRev}-leave-to`;
-          $(this).addClass(clasessNames).removeClass("active");
-          let delayTime = getTimeTransition(`.carousel-${control}-active`);
-          $(this).delay(delayTime).fadeOut(0, function () {
-            $(this).removeClass(clasessNames);
-            $(e.target).prop("disabled", false);
-          });
-        });
-        // Add Classes to Next or Prev Item
-        $(carouselItems[(control == "next" ? nextIndex : prevIndex)]).addClass(`carousel-${control}-enter active`);
-        $(carouselItems[(control == "next" ? nextIndex : prevIndex)]).show(0, function () {
-          let clasessNames = `carousel-${control}-active carousel-${controlRev}-enter-to`;
-          $(this).removeClass(`carousel-${control}-enter`).addClass(clasessNames);
-          let delayTime = getTimeTransition(`.carousel-${control}-active`);
-          $(this).delay(delayTime).fadeIn(0, function () {
-            $(this).removeClass(clasessNames);
-          });
-        });
-      } else {
-        // Carousel fade effect:
-        $(carouselItems[(control == "next" ? nextIndex : prevIndex)])
-          .addClass("active").fadeIn(function () {
-            $(e.target).prop("disabled", false);
-          }).siblings().removeClass("active").fadeOut();
-      }
-      carouselIndex = control == "next" ? nextIndex : prevIndex;
+      carousel(e.delegateTarget, e.target);
     }
   })
 
+  //// Slider FadeIn Loop
+  function slideFadeIn(elements, interval) {
+    let currentIndex = 0;
+    let itemsLen = elements.length;
+    $(elements).each((index, item) => {
+      if ($(item).hasClass("active")) currentIndex = index;
+      else $(item).hide();
+    })
+    
+    let intervalEl;
+    function fadeInItem() {
+      if (!intervalEl && itemsLen > 1) {
+        intervalEl = setInterval(getItem, interval);
+      }
+    }
+    function getItem() {
+      let nextIndex = (currentIndex + (1 % itemsLen) + itemsLen) % itemsLen;
+      $(elements[nextIndex]).fadeIn().siblings().fadeOut();
+      currentIndex = nextIndex;
+      console.log(intervalEl);
+    }
+    fadeInItem();
+    $(elements).hover(function () {
+      clearInterval(intervalEl);
+      intervalEl = null;
+    }, function () {
+      fadeInItem();
+    })
+  }
+  slideFadeIn($(".heading .carousel-item"), 7000);
+
+  // Mulit-Slider
   $('.slider').multislider({
     // endless scrolling
     continuous: false,

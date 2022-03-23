@@ -299,7 +299,6 @@ button {
   z-index: 1000;
   border-radius: 0;
   box-shadow: 0 3px 5px 0px rgba(0, 0, 0, 0.2);
-  background: #4d4d4d;
   line-height: 40px;
 }
 @media (max-width: 575.98px) {
@@ -315,8 +314,10 @@ button {
 }
 #to-up::after {
   border-radius: 0;
-  transform: scale(1);
-  transition: top 0.3s ease-in;
+  background: #4d4d4d;
+  transform: scaleY(0);
+  transform-origin: 50% 100%;
+  transition: transform 0.3s ease-out;
   transition-delay: 0.1s;
 }
 #to-up:hover .fas {
@@ -324,7 +325,7 @@ button {
   animation: hvr-icon-up 0.3s ease-out;
 }
 #to-up:hover::after {
-  top: -100%;
+  transform: scaleY(1);
 }
 
 .nav {
@@ -870,7 +871,8 @@ button {
   pointer-events: none;
 }
 
-.icon, a.icon {
+.icon,
+a.icon {
   display: inline-block;
   height: 30px;
   width: 30px;
@@ -878,16 +880,18 @@ button {
   line-height: 30px;
   font-size: inherit;
   text-align: center;
-  color: gray;
-  background: gray;
+  color: #fff;
+  background-color: gray;
   border-style: solid;
-  border-width: 0;
+  border-width: 1px;
+  border-color: transparent;
   position: relative;
   overflow: hidden;
-  transform: perspective(0) translateZ(0);
+  transform: perspective(1px) translateZ(0);
   transition: color 0.3s ease-out;
 }
-.icon::after, a.icon::after {
+.icon::after,
+a.icon::after {
   content: "";
   height: 100%;
   width: 100%;
@@ -896,81 +900,103 @@ button {
   left: 0;
   z-index: -1;
   border-radius: 50%;
-  background: #fff;
-  transform: scale(2);
+  background-color: #fff;
+  transform: scale(0);
   transition: transform 0.3s ease-out;
 }
-.icon:hover, a.icon:hover {
-  color: #fff;
-}
-.icon:hover::after, a.icon:hover::after {
-  transform: scale(0);
-}
-.icon.icon-primary, a.icon.icon-primary {
-  color: #f7f7f7;
-  background: #f7f7f7;
-}
-.icon.icon-primary:after, a.icon.icon-primary:after {
-  background: #802992;
-  border-color: #802992;
-}
-.icon.icon-primary:hover, a.icon.icon-primary:hover {
-  color: #802992;
-}
-.icon.icon-secondary, a.icon.icon-secondary {
-  color: #f7f7f7;
-  background: #f7f7f7;
-}
-.icon.icon-secondary:after, a.icon.icon-secondary:after {
-  background: #89cb07;
-  border-color: #89cb07;
-}
-.icon.icon-secondary:hover, a.icon.icon-secondary:hover {
-  color: #89cb07;
-}
-.icon.icon-light, a.icon.icon-light {
-  color: #1a1a1a;
-  background: #802992;
-}
-.icon.icon-light:after, a.icon.icon-light:after {
-  background: #f7f7f7;
-  border-color: #f7f7f7;
-}
-.icon.icon-light:hover, a.icon.icon-light:hover {
-  color: #f7f7f7;
-}
-.icon.icon-dark, a.icon.icon-dark {
-  color: #f7f7f7;
-  background: #f7f7f7;
-}
-.icon.icon-dark:after, a.icon.icon-dark:after {
-  background: #4d4d4d;
-  border-color: #4d4d4d;
-}
-.icon.icon-dark:hover, a.icon.icon-dark:hover {
-  color: #4d4d4d;
-}
-.icon.icon-gray, a.icon.icon-gray {
-  color: #f7f7f7;
-  background: #f7f7f7;
-}
-.icon.icon-gray:after, a.icon.icon-gray:after {
-  background: gray;
+.icon:hover,
+a.icon:hover {
+  color: gray;
   border-color: gray;
 }
-.icon.icon-gray:hover, a.icon.icon-gray:hover {
-  color: gray;
+.icon:hover::after,
+a.icon:hover::after {
+  transform: scale(2);
+  background-color: #fff;
 }
-.icon.icon-white, a.icon.icon-white {
+.icon.icon-primary,
+a.icon.icon-primary {
+  background-color: #802992;
+  color: #fff;
+}
+.icon.icon-primary:hover,
+a.icon.icon-primary:hover {
+  color: #802992;
+  border-color: #802992;
+}
+.icon.icon-primary:hover::after,
+a.icon.icon-primary:hover::after {
+  background-color: #fff;
+}
+.icon.icon-secondary,
+a.icon.icon-secondary {
+  background-color: #89cb07;
+  color: #fff;
+}
+.icon.icon-secondary:hover,
+a.icon.icon-secondary:hover {
+  color: #89cb07;
+  border-color: #89cb07;
+}
+.icon.icon-secondary:hover::after,
+a.icon.icon-secondary:hover::after {
+  background-color: #fff;
+}
+.icon.icon-light,
+a.icon.icon-light {
+  background-color: #f7f7f7;
+  color: #4d4d4d;
+}
+.icon.icon-light:hover,
+a.icon.icon-light:hover {
   color: #f7f7f7;
-  background: #f7f7f7;
+  border-color: #f7f7f7;
 }
-.icon.icon-white:after, a.icon.icon-white:after {
-  background: #fff;
+.icon.icon-light:hover::after,
+a.icon.icon-light:hover::after {
+  background-color: #4d4d4d;
+}
+.icon.icon-dark,
+a.icon.icon-dark {
+  background-color: #4d4d4d;
+  color: #fff;
+}
+.icon.icon-dark:hover,
+a.icon.icon-dark:hover {
+  color: #4d4d4d;
+  border-color: #4d4d4d;
+}
+.icon.icon-dark:hover::after,
+a.icon.icon-dark:hover::after {
+  background-color: #fff;
+}
+.icon.icon-gray,
+a.icon.icon-gray {
+  background-color: gray;
+  color: #f7f7f7;
+}
+.icon.icon-gray:hover,
+a.icon.icon-gray:hover {
+  color: gray;
+  border-color: gray;
+}
+.icon.icon-gray:hover::after,
+a.icon.icon-gray:hover::after {
+  background-color: #f7f7f7;
+}
+.icon.icon-white,
+a.icon.icon-white {
+  background-color: #fff;
+  color: #1a1a1a;
+}
+.icon.icon-white:hover,
+a.icon.icon-white:hover {
+  color: #fff;
   border-color: #fff;
 }
-.icon.icon-white:hover, a.icon.icon-white:hover {
-  color: #fff;
+.icon.icon-white:hover::after,
+a.icon.icon-white:hover::after {
+  background-color: #1a1a1a;
 }
 
 .btn {
@@ -984,7 +1010,7 @@ button {
   font-weight: normal;
   white-space: nowrap;
   color: #fff;
-  transform: perspective(0) translateZ(0px);
+  transform: perspective(1px) translateZ(0px);
   transition: all 0.3s ease-out;
 }
 .btn::before {

@@ -19,7 +19,7 @@
     font-weight: $btn-font-weight;
     white-space: nowrap;
     color: $white;
-    transform: perspective(0) translateZ(0px);
+    transform: perspective(1px) translateZ(0px);
     @include transition;
     &::before {
         @include position($zIndex: -1);
