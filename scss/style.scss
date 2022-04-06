@@ -11,6 +11,28 @@ body {
   letter-spacing: 0.6px;
 }
 
+.fa-chevron-right {
+  margin-left: 5px;
+  [dir=rtl] & {
+    margin-left: unset;
+    margin-right: 5px;
+    &::before {
+      content: "\f053";
+    }
+  }
+}
+.fa-quote-right::before {
+  [dir=rtl] & {
+    content: "\f10d";
+  }
+}
+
+.fa-arrow-right::before {
+  [dir=rtl] & {
+    content: "\f060";
+  }
+}
+
 p {
   text-align: left;
   line-height: $line-height-lg;
@@ -22,6 +44,9 @@ p {
 
 h1 {
   letter-spacing: 2px;
+  [dir=rtl] & {
+    letter-spacing: inherit;
+  }
 }
 
 .head-title {
@@ -100,6 +125,7 @@ h1.underline {
   }
   &.row {
     .card-img {
+      border-radius: 0;
       @include media-up("sm") {
         height: 300px;
       }
@@ -312,7 +338,7 @@ h1.underline {
     border-left-width: 15px;
     [dir=rtl] & {
       border-left-width: unset;
-      border-left-width: 15px;
+      border-right-width: 15px;
     }
   }
 }
@@ -477,54 +503,69 @@ a#live-chat {
   .container {
     @extend %flex-center;
     > {
-      :not(:first-child) {
-        padding-left: $gutter-sm;
+      :not(:first-child):not(:last-child) {
+        @include media-down("md") {
+          padding-left: $gutter-sm;
+          padding-right: $gutter-sm;
+        }
         @include media-up("md") {
           padding-left: $gutter-xl;
+          padding-right: $gutter-xl;
         }
+        border-left: $border-width solid $primary-color;
         [dir=rtl] & {
-          padding-left: unset;
-          padding-right: $gutter-sm;
-          @include media-up("md") {
-            padding-right: $gutter-xl;
-          }
+          border-left: unset;
+          border-right: $border-width solid $primary-color;
         }
       }
-      :not(:last-child) {
-        padding-right: $gutter-sm;
+      :first-child {
+        @include media-down("md") {
+          padding-right: $gutter-sm;
+        }
         @include media-up("md") {
           padding-right: $gutter-xl;
         }
         [dir=rtl] & {
-          padding-right: unset;
-          padding-left: $gutter-sm;
+          @include media-down("md") {
+            padding-right: unset;
+            padding-left: $gutter-sm;
+          }
           @include media-up("md") {
-            padding-right: $gutter-xl;
+            padding-right: unset;
+            padding-left: $gutter-xl;
           }
         }
       }
-      :nth-child(even) {
-        border-left: $border-width solid $primary-color;
-        [dir=rtl] & {
-          border-left-width: unset;
-          border-right-width: $border-width;
-        }
-      }
       :last-child {
+        @include media-down("md") {
+          padding-left: $gutter-sm;
+        }
+        @include media-up("md") {
+          padding-left: $gutter-xl;
+        }
         margin-left: auto;
         [dir=rtl] & {
+          @include media-down("md") {
+            padding-left: unset;
+            padding-right: $gutter-sm;
+          }
+          @include media-up("md") {
+            padding-left: unset;
+            padding-right: $gutter-xl;
+          }
           margin-left: unset;
           margin-right: auto;
         }
       }
     }
+
     .social {
       @extend %flex-center;
       > :first-child {
         display: none;
         @include media-up("sm") {
           display: inline;
-          @include media-up("md") {
+          @include media-up("lg") {
             margin-right: $gutter-base;
             [dir=rtl] & {
               margin-right: unset;
@@ -565,7 +606,7 @@ a#live-chat {
       padding: 7px 15px;
       letter-spacing: 0;
     }
-}
+  }
 }
 
 .navbar {
@@ -629,6 +670,12 @@ a#live-chat {
 }
 
 .main-slider .carousel {
+  @include media-down("xs") {
+    max-height: 300px;
+    .carousel-item {
+      align-items: flex-end;
+    }
+  }
   .carousel-item {
     .item-caption {
       background-color: color.scale($white, $alpha: -60%);
@@ -641,7 +688,7 @@ a#live-chat {
         //   margin-right: 40px;
         // }
       }
-      @include media-up("lg") {
+      @include media-up("xl") {
         max-width: 40%;
         // margin-left: 60px;
         // [dir=rtl] & {
@@ -672,15 +719,34 @@ a#live-chat {
       background-color: transparent;
     }
   }
-  .carousel-control > * {
-    background-color: $gray-30;
-    width: 40px;
-    height: 40px;
-    line-height: 37px;
-    text-align: center;
-    border-radius: 50%;
-    color: #fff;
-    font-size: $font-size-base;
+  .carousel-control {
+    > * {
+      background-color: $gray-30;
+      width: 40px;
+      height: 40px;
+      line-height: 37px;
+      text-align: center;
+      border-radius: 50%;
+      color: #fff;
+      font-size: $font-size-base;
+      top: 50%;
+    }
+    @include media-down("xs") {
+      .prev {
+        left: 15px;
+        [dir=rtl] & {
+          left: unset;
+          right: 15px;
+        }
+      }
+      .next {
+        right: 15px;
+        [dir=rtl] & {
+          right: unset;
+          left: 15px;
+        }
+      }
+    }
   }
 }
 
@@ -1040,6 +1106,92 @@ main:not(.page) .services {
     z-index: -1;
   }
 
+  section:not(.heading) .carousel {
+    .carousel-item {
+      overflow: hidden;
+      @include media-up("md") {
+        align-items: flex-end;
+        .container {
+          padding: $gutter-xl 60px 60px;
+        }
+      }
+      .item-caption {
+        position: relative;
+        overflow: visible;
+        padding: $gutter-md * 3 $gutter-sm $gutter-md;
+        border-radius: 5px;
+        background-color: color.scale($white, $alpha: -90%);
+        color: $white;
+        @include media-up("md") {
+          padding-left: $gutter-md;
+          padding-right: $gutter-md;
+          width: 70%;
+          background-color: $white;
+          color: inherit;
+        }
+        @include media-up("lg") {
+          width: 45%;
+        }
+        h2 {
+          margin-bottom: $gutter-sm;
+        }
+        p {
+          display: block;
+          color: $white;
+          margin: 0;
+          line-height: $line-height-md;
+          @include media-up("md") {
+            color: $gray;
+          }
+        }
+        .mark {
+          position: absolute;
+          top: 0;
+          left: auto;
+          [dir=rtl] & {
+            left: unset;
+            right: auto;
+          }
+          transform: translateY(-60%);
+        }
+      }
+    }
+    .carousel-control .prev,
+    .carousel-control .next {
+      @include media-down("sm") {
+        top: calc(100% - 40px);
+        padding: 7px 15px;
+      }
+      padding: $gutter-sm $gutter-md;
+      top: calc(100% - 60px);
+      left: unset;
+      transform: translate(-100%, -100%);
+      [dir=rtl] & {
+        right: unset;
+        transform: translate(100%, -100%);
+      }
+      color: inherit;
+      opacity: 1;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+    .carousel-control .prev {
+      right: 70px;
+      [dir=rtl] & {
+        left: 70px;
+      }
+      background-color: $secondary-color;
+    }
+    .carousel-control .next {
+      right: 0;
+      [dir=rtl] & {
+        left: 0;
+      }
+      background-color: $white;
+    }
+  }
+
   .products {
     .card {
       @include media-up("xl") {
@@ -1104,89 +1256,7 @@ main:not(.page) .services {
       }
     }
     .carousel {
-      border-radius: 10px;
-      .carousel-item {
-        @include media-up("md") {
-          align-items: flex-end;
-          .container {
-            padding: $gutter-xl 60px 60px;
-          }
-        }
-        .item-caption {
-          position: relative;
-          overflow: visible;
-          padding: $gutter-md * 3 $gutter-sm $gutter-md;
-          border-radius: 5px;
-          background-color: color.scale($white, $alpha: -90%);
-          color: $white;
-          @include media-up("md") {
-            padding-left: $gutter-md;
-            padding-right: $gutter-md;
-            width: 70%;
-            background-color: $white;
-            color: inherit;
-          }
-          @include media-up("lg") {
-            width: 45%;
-          }
-          h2 {
-            margin-bottom: $gutter-sm;
-          }
-          p {
-            display: block;
-            color: $white;
-            margin: 0;
-            line-height: $line-height-md;
-            @include media-up("md") {
-              color: $gray;
-            }
-          }
-          .mark {
-            position: absolute;
-            top: 0;
-            left: auto;
-            [dir=rtl] & {
-              left: unset;
-              right: auto;
-            }
-            transform: translateY(-60%);
-          }
-        }
-      }
-      .carousel-control .prev,
-      .carousel-control .next {
-        @include media-down("sm") {
-          top: calc(100% - 40px);
-          padding: 7px 15px;
-        }
-        padding: $gutter-sm $gutter-md;
-        top: calc(100% - 60px);
-        left: unset;
-        transform: translate(-100%, -100%);
-        [dir=rtl] & {
-          right: unset;
-          transform: translate(100%, -100%);
-        }
-        color: inherit;
-        opacity: 1;
-        &:hover {
-          opacity: 0.7;
-        }
-      }
-      .carousel-control .prev {
-        right: 70px;
-        [dir=rtl] & {
-          left: 70px;
-        }
-        background-color: $secondary-color;
-      }
-      .carousel-control .next {
-        right: 0;
-        [dir=rtl] & {
-          left: 0;
-        }
-        background-color: $white;
-      }
+      border-radius: 10px
     }
   }
   
@@ -1248,7 +1318,7 @@ main:not(.page) .services {
     }
   }
 
-  .post {
+  section:not(.heading) .post {
     .post-title {
       display: flex;
       justify-content: space-between;
@@ -1281,6 +1351,51 @@ main:not(.page) .services {
           padding-right: 20px;
         }
         font-size: $font-size-md;
+      }
+    }
+    .carousel {
+      @include media-down("md") {
+        max-height: 300px;
+      }
+      @include media-up("lg") {
+        margin-right: 20px;
+        [dir=rtl] & {
+          margin-right: unset;
+          margin-left: 20px;
+        }
+      }
+      // .carousel-control .prev, 
+      // .carousel-control .next {
+      //   background-color: $black;
+      //   color: $secondary-color;
+      //   font-size: $font-size-md;
+      //   padding-left: $gutter-base;
+      //   padding-right: $gutter-base;
+      //   @include media-up("md") {
+      //     top: 50%;
+      //     right: unset;
+      //     transform: translate(-50%, -50%);
+      //   }
+      // }
+      @include media-up-down("md", "lg") {
+        .carousel-control .prev {
+          right: calc(25% + 70px);
+          [dir=rtl] & {
+              right: unset;
+              left: calc(25% + 70px);
+            }
+        }
+        .carousel-control .next {
+          right: 25%;
+          [dir=rtl] & {
+            right: unset;
+            left: 25%;
+          }
+        }
+      }
+
+      .post-img {
+        padding: 0;
       }
     }
   }

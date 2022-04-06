@@ -1573,11 +1573,13 @@ footer .sub-footer a:hover {
 }
 .post .post-img {
   max-width: max-content;
+  height: 100%;
   margin: auto;
   margin-bottom: 15px;
 }
 .post .post-img .figure-img {
   position: relative;
+  max-height: 100%;
 }
 .post .post-img figcaption {
   padding: 10px;

@@ -132,17 +132,40 @@
         </div>
 
         <article class="post">
-          <figure class="post-img">
-            <div class="figure-img">
-              <img class="lazyload" data-src="images/pic-proj-3.jpg" alt="Application Name" />
-              <div class="overlay-bg">
-                <button class="modal-open" type="button" data-image="images/pic-proj-3.jpg">
-                  <i class="fas fa-expand"></i>
-                </button>
+          <div class="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <figure class="post-img">
+                  <div class="figure-img">
+                    <img class="lazyload" data-src="images/pic-proj-3.jpg" alt="Application Name" />
+                    <div class="overlay-bg">
+                      <button class="modal-open" type="button" data-image="images/pic-proj-3.jpg">
+                        <i class="fas fa-expand"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- <figcaption></figcaption> -->
+                </figure>
+              </div>
+              <div class="carousel-item" style="display: none">
+                <figure class="post-img">
+                  <div class="figure-img">
+                    <img class="lazyload" data-src="images/pic-proj-1.jpg" alt="Application Name" />
+                    <div class="overlay-bg">
+                      <button class="modal-open" type="button" data-image="images/pic-proj-1.jpg">
+                        <i class="fas fa-expand"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- <figcaption></figcaption> -->
+                </figure>
               </div>
             </div>
-            <!-- <figcaption></figcaption> -->
-          </figure>
+            <div class="carousel-control">
+              <a href="#prev" class="prev" aria-controls="prev"></a>
+              <a href="#next" class="next" aria-controls="next"></a>
+            </div>
+          </div>
 
           <div class="post-content">
             <h2 class="post-title">Application Name <i class="fas fa-quote-right text-large text-primary"></i></h2>

@@ -79,7 +79,7 @@ $(function () {
         $(this).focus();
       }
     })
-      .find(".modal-body").css("animation", "slide-in 0.5s");
+    .find(".modal-body").css("animation", "slide-in 0.5s");
     if ($(this).hasClass("open-modal-search")) {
       $(".modal-search").show().find("input").val("").focus();
       $(".modal-content").hide();
@@ -119,8 +119,8 @@ $(function () {
       }
       $(item).not(".active").hide();
     })
-    let control = $(target).hasClass("prev") ? "prev" : "next";
-    let controlRev = $(target).hasClass("prev") ? "next" : "prev";
+    control = ariaControl;
+    let controlRev = control == "next" ? "prev" : "next";
     $(target).prop("disabled", true);
 
     let currentIndex = carouselIndex;
@@ -150,17 +150,42 @@ $(function () {
       });
     } else {
       // Carousel fade effect:
-      $(carouselItems[(control == "next" ? nextIndex : prevIndex)])
-        .addClass("active").fadeIn(function () {
-          $(target).prop("disabled", false);
-        }).siblings().removeClass("active").fadeOut();
+      $(carouselItems[(control == "prev" ? prevIndex : nextIndex)])
+      .addClass("active").fadeIn(function () {
+        $(target).prop("disabled", false);
+      }).siblings().removeClass("active").fadeOut();
     }
     carouselIndex = control == "prev" ? prevIndex : nextIndex;
   }
-  $(".main-slider .carousel").on("click", ".next, .prev", function (e) {
+  let ariaControl = "next";
+  // Play Carousel on Click
+  $(".carousel").on("click", ".next, .prev", function (e) {
+    ariaControl = $(e.target).attr("aria-controls");
     if ($(this).hasClass("next") || $(this).hasClass("prev")) {
       carousel(e.delegateTarget, e.target);
     }
+  })
+  // Autoplay Carousel
+  function autoPlayCarousel(element, interval) {
+    let itemsLen = element.find(".carousel-item").length;
+    // console.log(itemsLen);
+    let intervalStart;
+    function IntervalCheck() {
+      if (!intervalStart && itemsLen > 1) {
+        intervalStart = setInterval(() => carousel(element), interval);
+      }
+    }
+    IntervalCheck();
+    $(element).hover(function () {
+      clearInterval(intervalStart);
+      intervalStart = null;
+    }, function () {
+      IntervalCheck();
+    })
+  }
+
+  $(".carousel").each(function () {
+    autoPlayCarousel($(this), 4000);
   })
 
   //// Slider FadeIn Loop
@@ -182,7 +207,7 @@ $(function () {
       let nextIndex = (currentIndex + (1 % itemsLen) + itemsLen) % itemsLen;
       $(elements[nextIndex]).fadeIn().siblings().fadeOut();
       currentIndex = nextIndex;
-      console.log(intervalEl);
+      // console.log(intervalEl);
     }
     fadeInItem();
     $(elements).hover(function () {
@@ -192,7 +217,7 @@ $(function () {
       fadeInItem();
     })
   }
-  slideFadeIn($(".heading .carousel-item"), 7000);
+  // slideFadeIn($(".heading .carousel-item"), 4000);
 
   // Mulit-Slider
   $('.slider').multislider({
